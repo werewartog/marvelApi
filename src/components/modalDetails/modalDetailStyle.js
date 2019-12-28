@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalDetailBackGround = styled.div`
+.disableBg {
     z-index: 1200;
     flex-direction: column;
     top: 0;
@@ -12,8 +13,8 @@ export const ModalDetailBackGround = styled.div`
     align-items: center;
     touch-action: none;
     justify-content: center;
-    background-color: rgba(221, 224, 228, 0.9)
-
+    background-color: rgba(221, 224, 228, 0.9);
+}
 
 .closeButton {
     position: absolute!important;
