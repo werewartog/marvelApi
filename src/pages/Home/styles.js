@@ -39,7 +39,7 @@ export const ProductList = styled.div`
     }
 
     button {
-        background: #04bf6d;
+        background: red;
         color: #fff;
         border: 0;
         border-radius: 4px;

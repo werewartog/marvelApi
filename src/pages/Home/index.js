@@ -4,11 +4,20 @@ import { ProductList } from './styles';
 import api from '../../services/api'
 import URL_REQUEST from '../../utils/url'
 import {formatCurrency} from '../../utils/format'
+import {disableScroll} from '../../utils/disableScroll'
+import ModalDetails from '../../components/modalDetails/ModalDetails'
 
 class Home extends Component {
     state = {
         results: [],
-        openModal: false
+        openModal: false,
+        comicSelected: {
+            img: '',
+            title: '',
+            price: '',
+            description: '',
+            creators: []
+        }
     }
 
     async componentDidMount() {
@@ -21,22 +30,42 @@ class Home extends Component {
             results: data
         })
     }
+    handleOpenModal = (idSelected) =>{
+        let item = this.state.results.find((iditem) => iditem.id === idSelected)
+        console.log(item)
+        this.setState({
+            ...this.state,
+            comicSelected:{
+                img: item.thumbnail.path.concat(".").concat("jpg"),
+                title:item.title,
+                description:item.textObjects.map((desc) => desc.text),
+                price: item.prices.map((priceObj) => formatCurrency(priceObj.price)),
+                creators: item.creators.items
+            },
+            openModal: true
+        },() => disableScroll(this.state.openModal))
+    }
+    handleCloseModal = () =>{
+        this.setState({
+            ...this.state,
+            openModal: false
+        },() => disableScroll(this.state.openModal))
+    }
 
     render(){
 
-        const {results} = this.state
-        console.log(results)
+        const {results, comicSelected} = this.state
+        console.log(comicSelected)
         return (
             <Fragment>
+                <ModalDetails showModalBox={this.state.openModal} closeModalBox={this.handleCloseModal} option={this.state.comicSelected}/>
                 <ProductList>
                     {
                         results.map((product) => (
                             <li key={product.id}>
                                 <img src={product.thumbnail.path.concat(".").concat("jpg")} alt={product.title} />
                                 <strong>{product.title}</strong>
-                                <span>{product.prices.map((priceObj) => formatCurrency(priceObj.price))}</span>
-
-                                <button type='button' onClick={() => this.handleOpenModal()}>
+                                <button type='button' onClick={() => this.handleOpenModal(product.id)}>
                                     <span>Ver detalhes</span>
                                 </button>
                             </li>
