@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import cart from '../../store/modules/cart/reducer'
+import { comic } from '../../store/modules/comics/reducer'
 
 export default combineReducers ({
-    cart
+    comic
 })

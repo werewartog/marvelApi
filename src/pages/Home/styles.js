@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const ProductList = styled.div`
+    margin: 35px
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 40px;
     list-style: none;
 
     img{
@@ -12,18 +13,19 @@ export const ProductList = styled.div`
         width: 100%;
     }
 
-    li {
+    .li {
         display: flex;
         flex-direction: column;
         background: #fff;
         border-radius: 4px;
         padding: 20px;
+        overfloe: auto;
     }
 
-    li > strong{
+    .li > strong{
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 320px;
+        width: 300px;
         overflow: hidden;
         text-overflow:    ellipsis;
         font-size: 16px;
@@ -32,13 +34,13 @@ export const ProductList = styled.div`
         margin: 10px 0 15px;
     }
 
-    li > span {
+    .li > span {
         font-size: 21px;
         font-weight: bold;
         margin: 5px 0 20px;
     }
 
-    button {
+    .button {
         background: red;
         color: #fff;
         border: 0;
@@ -50,16 +52,6 @@ export const ProductList = styled.div`
 
         display: flex;
         align-items: center;
-
-        div {
-            display: flex;
-            align-items: ceter;
-            background: #00a75e;
-
-            svg {
-                margin-right: 5px;
-            }
-        }
 
         span {
             flex: 1;

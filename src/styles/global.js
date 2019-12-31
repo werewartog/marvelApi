@@ -12,7 +12,7 @@ export default createGlobalStyle `
     }
 
     body {
-        background-image: linear-gradient(to bottom right, #000, #581515, #000);
+        background: #000;
         -webkit-font-smoothing: antialiased;
     }
 
@@ -20,8 +20,7 @@ export default createGlobalStyle `
         font: 14px Roboto,  sans-serif;
     }
 
-    #root {
-        max-width: 1020px;
+    .container {
         margin: 0 auto;
         padding: 0 20px 50px;
     }
@@ -29,4 +28,22 @@ export default createGlobalStyle `
     button {
         cursor: pointer;
     }
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #fff;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: red;
+}
+
 `

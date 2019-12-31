@@ -11,7 +11,6 @@ class ModalDetails extends Component {
             option,
             title,
         } = this.props;
-        console.log("props:", this.props)
         return (
             <DisableBackground
                 showModalBox={showModalBox}
