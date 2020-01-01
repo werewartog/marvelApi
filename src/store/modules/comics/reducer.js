@@ -1,4 +1,4 @@
-import { GET_COMICS, SEARCH_COMICS, GET_COMIC_BY_NAME, PAGINATE_COMICS } from '../typeAction';
+import { GET_COMICS, SEARCH_COMICS, GET_CHARACTER, PAGINATE_COMICS } from '../typeAction';
 import produce from 'immer'
 
 const initialState = {
@@ -6,14 +6,13 @@ const initialState = {
     comic: undefined,
     pagination: {},
     totalComics:'',
-    limit: ''
+    limit: '',
+    idCharacter: 0
 };
 
 export const comic = (state = initialState, action) => {
     switch(action.type) {
         case GET_COMICS: {
-
-    console.log(action.payload.data.data)
             const {
                 results,
                 limit,
@@ -44,11 +43,26 @@ export const comic = (state = initialState, action) => {
         //             })
         //         }
         //     })
-        case GET_COMIC_BY_NAME: {
-            return { ...state, comic: action.payload.data.data };
+        case GET_CHARACTER: {
+            return { ...state, idCharacter: action.payload.data.data.results[0].id };
         }
-        case PAGINATE_COMICS: {
-            return { ...state, pagination: action.payload.data };
+        case SEARCH_COMICS: {
+            const {
+                results,
+                limit,
+                offset,
+                total,
+                count,
+              } = action.payload.data.data;
+
+              return {
+                ...state,
+                limit: limit,
+                offset,
+                totalComics: total,
+                count,
+                comics: results,
+              }
         }
         default: {
             return state;

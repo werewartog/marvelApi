@@ -23,6 +23,65 @@ export const ReactPaginateStyle = styled.div`
         color: red,
     }
 `;
+export const FindBox = styled.div`
+    .form {
+        outline: 0;
+        margin-top: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        background: #fff;
+        height: 65px;
+    }
+
+    .form > .textbox {
+        font-size: 20px;
+        outline: 0;
+        height: 50px;
+        width: 34vw;
+        line-height: 42px;
+        padding: 0 16px;
+        background-color: #e8dcdccc;
+        color: #212121;
+        border: 0;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .form > .textbox:focus {
+        outline: 0;
+        background-color: #F2F2F2;
+    }
+
+    .form > .button {
+        padding: 7px;
+        outline: 0;
+        background: none;
+        background-color: red;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 42px;
+        border: 0;
+        color: #FFF;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: 16px;
+        text-rendering: auto;
+        text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+        -webkit-transition: background-color .4s ease;
+        -webkit-transition: background-color .4s ease;
+        transition: background-color .4s ease;
+        -webkit-border-radius: 0 4px 4px 0;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .form > .button:hover {
+        background-color: #802424;
+        cursor: pointer;
+    }
+    .fontIcon {
+        font-size: 2em;
+    }
+`
 export const ContentBox = styled.div`
     max-width: 1560px;
     margin: 0 auto;

@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { ProductList, ReactPaginateStyle, ContentBox } from './styles';
+import { ProductList, ReactPaginateStyle, ContentBox, FindBox } from './styles';
 import { formatCurrency } from '../../utils/format'
 import { disableScroll } from '../../utils/disableScroll'
 import ModalDetails from '../../components/modalDetails/ModalDetails'
 import ReactPaginate from 'react-paginate';
+import { MdSearch } from 'react-icons/md';
 
 class Home extends Component {
     state = {
@@ -16,7 +17,9 @@ class Home extends Component {
             price: '',
             description: '',
             creators: []
-        }
+        },
+        characterName:'',
+        page: 1
     }
 
     async componentDidMount() {
@@ -33,15 +36,42 @@ class Home extends Component {
     }
 
     handlePage = (limit, page) => {
-        this.props.getComics(limit, page)
-            .then(() => {
-                const data = this.props.comics.map((comic) => ({
-                    ...comic
-                }))
-
-                this.setState({
-                    results: data
+        if (this.props.idCharacter !== 0) {
+            this.props.getComicById(this.props.idCharacter, limit, page)
+                .then(() => {
+                    const data = this.props.comics.map((comic) => ({
+                        ...comic
+                    }))
+                    this.setState({
+                        results: data
+                    })
                 })
+        }
+        else {
+            this.props.getComics(limit, page)
+                .then(() => {
+                    const data = this.props.comics.map((comic) => ({
+                        ...comic
+                    }))
+
+                    this.setState({
+                        results: data
+                    })
+                })
+        }
+    }
+
+    searchByCharacter = (name) => {
+        this.props.getCharacter(name)
+            .then(() => {
+                this.props.getComicById(this.props.idCharacter)
+                    .then(() => {
+                        this.setState({
+                            ...this.state,
+                            page: this.state.page + 1
+                        })
+                        this.handlePage(10, 0)
+                    })
             })
     }
 
@@ -66,13 +96,41 @@ class Home extends Component {
         }, () => disableScroll(this.state.openModal))
     }
 
+    handleChangeName = (value) =>{
+        this.setState({
+            ...this.state,
+            characterName: value
+        })
+    }
     render() {
-
+        console.log("page: ", this.state.page)
         const { results } = this.state
-
-        console.log("comic container", this.props)
         return (
             <Fragment>
+                <FindBox>
+                    <div className="form">
+                        <span
+                            type="submit"
+                            className="button"
+                            onClick={() => this.searchByCharacter(this.state.characterName)}
+                        >
+                            <div className="fontIcon">
+                                <MdSearch />
+                            </div>
+                        </span>
+                        <input
+                            type="text"
+                            className="textbox"
+                            onChange={(e) => this.handleChangeName(e.target.value)}
+                            value={this.state.characterName}
+                            onSubmit={(e) => {
+                                this.searchByCharacter(e.target.value);
+                                e.preventDefault();
+                            }}
+                            placeholder="Find comic by hero name"
+                        />
+                    </div>
+                </FindBox>
                 <ContentBox>
                     <ModalDetails showModalBox={this.state.openModal} closeModalBox={this.handleCloseModal} option={this.state.comicSelected} />
                     <ProductList>
@@ -90,6 +148,7 @@ class Home extends Component {
                     </ProductList>
                     <ReactPaginateStyle>
                         <ReactPaginate
+                            key={this.state.page}
                             previousLabel={'previous'}
                             nextLabel={'next'}
                             breakLabel={'...'}
@@ -97,7 +156,7 @@ class Home extends Component {
                             pageCount={(this.props.numberItems / this.props.limit) - 1}
                             marginPagesDisplayed={2}
                             pageRangeDisplayed={5}
-                            onPageChange={(e) => this.handlePage(10, e.selected + 1)}
+                            onPageChange={(e) => this.handlePage(10, e.selected)}
                             containerClassName={'stylePaginator'}
                             subContainerClassName={'stylePaginator'}
                             activeClassName={'activePage'}
