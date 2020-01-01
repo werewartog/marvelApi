@@ -28,24 +28,34 @@ export const ModalDetailBackGround = styled.div`
 }
 
 .image{
-    height: 350px;
-    margin-bottom: 20px;
+    height: 511px;
     box-shadow: 0px 5px 5px #000;
 }
 .positionItens {
     margin: 20px;
     border-radius: 25px;
     background-color: #fff;
-    box-sizing: inline-block;
-    width: 555px;
-    height: 95vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    width: 63vw;
+    height: 68vh;
     padding: 3px 30px;
-    text-align: center;
+    text-align: end;
 }
+
+.closeIcon{
+    display: flex;
+    cursor: pointer;
+    padding: 7px;
+    font-size: 30px;
+    flex-direction: row-reverse;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .positionText {
 
     display: flex;
@@ -54,9 +64,11 @@ export const ModalDetailBackGround = styled.div`
     justify-content: center;
     text-align: left;
 }
-
+.boxSize {
+    width: 650px;
+}
 .title {
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: bold;
 }
 .subTitle {
@@ -64,7 +76,7 @@ export const ModalDetailBackGround = styled.div`
     font-weight: 500;
 }
 .subTitleAutor {
-    font-size: 1em;
+    font-size: 1.4em;
     font-weight: 500;
 }
 .positionItens > span {

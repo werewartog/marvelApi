@@ -13,7 +13,7 @@ class DisableBackground extends Component {
 
         return (
             <ModalDetailBackGround>
-                <div className={showModalBox ? "disableBg" : "displayNone"} onClick={closeModalBox}>
+                <div className={showModalBox ? "disableBg" : "displayNone"}>
                     <div className="boxItems">
                         {children}
                     </div>
