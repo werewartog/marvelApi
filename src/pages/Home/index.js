@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { ProductList } from './styles';
-import api from '../../services/api'
-import URL_REQUEST from '../../utils/url'
+import { ProductList, ReactPaginateStyle, ContentBox } from './styles';
 import { formatCurrency } from '../../utils/format'
 import { disableScroll } from '../../utils/disableScroll'
 import ModalDetails from '../../components/modalDetails/ModalDetails'
+import ReactPaginate from 'react-paginate';
 
 class Home extends Component {
     state = {
@@ -32,6 +31,20 @@ class Home extends Component {
         })
 
     }
+
+    handlePage = (limit, page) => {
+        this.props.getComics(limit, page)
+            .then(() => {
+                const data = this.props.comics.map((comic) => ({
+                    ...comic
+                }))
+
+                this.setState({
+                    results: data
+                })
+            })
+    }
+
     handleOpenModal = (idSelected) => {
         let item = this.state.results.find((iditem) => iditem.id === idSelected)
         this.setState({
@@ -55,25 +68,42 @@ class Home extends Component {
 
     render() {
 
-        const { results, comicSelected } = this.state
+        const { results } = this.state
 
         console.log("comic container", this.props)
         return (
             <Fragment>
-                <ModalDetails showModalBox={this.state.openModal} closeModalBox={this.handleCloseModal} option={this.state.comicSelected} />
-                <ProductList>
-                    {
-                        results.map((product) => (
-                            <li key={product.id} className="li">
-                                <img src={product.thumbnail.path.concat(".").concat("jpg")} alt={product.title} />
-                                <strong>{product.title}</strong>
-                                <button type='button' className="button" onClick={() => this.props.getComicsTeste(5)}>
-                                    <span>Ver detalhes</span>
-                                </button>
-                            </li>
-                        ))
-                    }
-                </ProductList>
+                <ContentBox>
+                    <ModalDetails showModalBox={this.state.openModal} closeModalBox={this.handleCloseModal} option={this.state.comicSelected} />
+                    <ProductList>
+                        {
+                            results.map((comicUnique) => (
+                                <li key={comicUnique.id} className="li">
+                                    <img src={comicUnique.thumbnail.path.concat(".").concat("jpg")} alt={comicUnique.title} />
+                                    <strong>{comicUnique.title}</strong>
+                                    <button type='button' className="button" onClick={() => this.handleOpenModal(comicUnique.id)}>
+                                        <span>Ver detalhes</span>
+                                    </button>
+                                </li>
+                            ))
+                        }
+                    </ProductList>
+                    <ReactPaginateStyle>
+                        <ReactPaginate
+                            previousLabel={'previous'}
+                            nextLabel={'next'}
+                            breakLabel={'...'}
+                            breakClassName={'break-me'}
+                            pageCount={(this.props.numberItems / this.props.limit) - 1}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={5}
+                            onPageChange={(e) => this.handlePage(10, e.selected + 1)}
+                            containerClassName={'stylePaginator'}
+                            subContainerClassName={'stylePaginator'}
+                            activeClassName={'activePage'}
+                        />
+                    </ReactPaginateStyle>
+                </ContentBox>
             </Fragment>
         )
     }

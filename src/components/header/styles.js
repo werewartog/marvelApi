@@ -14,11 +14,11 @@ export const Container = styled.div`
     }
     form {
         outline: 0;
-        float: left;
         -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         -webkit-border-radius: 4px;
         border-radius: 4px;
+        display: flex;
       }
 
       form > .textbox {
@@ -42,6 +42,7 @@ export const Container = styled.div`
       }
 
       form > .button {
+        padding: 7px;
         outline: 0;
         background: none;
         background-color: red;
@@ -54,7 +55,8 @@ export const Container = styled.div`
         font: normal normal normal 14px/1 FontAwesome;
         font-size: 16px;
         text-rendering: auto;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+        -webkit-transition: background-color .4s ease;
         -webkit-transition: background-color .4s ease;
         transition: background-color .4s ease;
         -webkit-border-radius: 0 4px 4px 0;
@@ -63,6 +65,10 @@ export const Container = styled.div`
 
       form > .button:hover {
         background-color: #802424;
+        cursor: pointer;
+      }
+      .fontIcon {
+          font-size: 2em;
       }
 `;
 

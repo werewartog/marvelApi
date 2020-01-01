@@ -20,7 +20,8 @@ class ContainerHome extends Component {
 
 const mapStateToProps = state => ({
     comics: state.comic.comics,
-    numberItems: state.comic.numberItems,
+    numberItems: state.comic.totalComics,
+    limit: state.comic.limit,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

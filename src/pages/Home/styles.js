@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+export const ReactPaginateStyle = styled.div`
+    ul {
+        padding: 0 15vw 0 15vw;
+        color: #fff;
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        font-size: 1.5em;
+        margin-bottom: 25px;
+        margin-top: 45px;
+    }
+
+    .activePage {
+        color: red
+    }
+
+    ul > li {
+        cursor: pointer;
+    }
+    ul > li:hover {
+        color: red,
+    }
+`;
+export const ContentBox = styled.div`
+    max-width: 1560px;
+    margin: 0 auto;
+`;
 export const ProductList = styled.div`
     margin: 35px
     display: grid;

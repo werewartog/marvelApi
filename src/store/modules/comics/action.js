@@ -1,15 +1,28 @@
-import { GET_COMICS, SEARCH_COMICS, GET_COMIC_BY_NAME, PAGINATE_COMICS } from '../typeAction';
+import { GET_COMICS, SEARCH_COMICS, GET_COMIC_BY_NAME, PAGINATE_COMICS, APPLICATION_LOADING } from '../typeAction';
 import axios from 'axios';
+import {disableScroll} from '../../../utils/disableScroll'
 
 const API = 'https://gateway.marvel.com:443/v1/public';
 const ts ="1576634385"
 const hash = "67fcc46225dda9f915c1264f177ff755"
 const apiKey = "7e2ddc6f5ad7aef6be4dcd693d56d58d"
-export const getComics = (limit = 10) => {
+
+const dispatchLoading = (loading = false) => {
+    return {
+        type: APPLICATION_LOADING,
+        payload: {loading}
+    }
+};
+
+export const getComics = (limit = 10, offset=0) => {
     return async dispatch => {
+        dispatch(dispatchLoading(true))
+        disableScroll(true)
         try {
-            const data = await axios.get(`${API}/comics?limit=${limit}&ts=${ts}&apikey=${apiKey}&hash=${hash}`);
+            const data = await axios.get(`${API}/comics?limit=${limit}&ts=${ts}&apikey=${apiKey}&orderBy=title&offset=${offset * limit}&hash=${hash}`);
             dispatch({type:GET_COMICS, payload: data});
+            dispatch(dispatchLoading(false));
+            disableScroll(false);
 
         } catch (error) {
             console.log(error)

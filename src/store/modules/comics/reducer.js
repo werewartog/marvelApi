@@ -5,6 +5,8 @@ const initialState = {
     comics: [],
     comic: undefined,
     pagination: {},
+    totalComics:'',
+    limit: ''
 };
 
 export const comic = (state = initialState, action) => {
@@ -22,9 +24,9 @@ export const comic = (state = initialState, action) => {
 
               return {
                 ...state,
-                limit,
+                limit: limit,
                 offset,
-                total,
+                totalComics: total,
                 count,
                 comics: results,
               }

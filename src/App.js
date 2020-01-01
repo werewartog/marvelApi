@@ -5,10 +5,12 @@ import store from './store'
 import Routes from './routes';
 import GlobalStyles from './styles/global'
 import Header from './components/header/index'
+import LoaderCircle from './components/Loader/container'
 
 function App() {
   return (
       <Provider store={store}>
+        <LoaderCircle />
         <BrowserRouter>
             <Header />
             <Routes />
