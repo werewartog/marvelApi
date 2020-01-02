@@ -1,4 +1,4 @@
-Catalogo de quadrinhos.
+Catálogo de quadrinhos.
 
 Detalhes:
  - React/Redux.
