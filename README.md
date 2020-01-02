@@ -4,7 +4,6 @@ Detalhes:
  - React/Redux.
  - Não responsivo (Estou trabalhando nisso).
  - Styled-components
- - Redux-Thunk
  - Eslint
  - Prettier
 
