@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Container } from './styles';
-import logo from '../../assets/images/marvel-comics-logo.jpg'
+import logo from '../../assets/images/logo.png'
 import {
     getCharacter,
     getComicById
@@ -15,6 +15,7 @@ function header() {
             <Link to='/'>
                 <img src={logo} className="logo" alt='Posters' />
             </Link>
+            <span className="logoElement">Catalog</span>
         </Container>
     );
 }

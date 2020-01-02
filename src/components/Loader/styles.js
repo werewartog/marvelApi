@@ -19,7 +19,7 @@ export const LoaderStyle = styled.div`
 	width: 60px;
 	height: 60px;
 	border: 6px solid #BDBDBD;
-	border-left-color: #E91E63;
+	border-left-color: red;
 	border-radius: 100%;
 	animation: spin 1s linear infinite;
 }

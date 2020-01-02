@@ -103,7 +103,6 @@ class Home extends Component {
         })
     }
     render() {
-        console.log("page: ", this.state.page)
         const { results } = this.state
         return (
             <Fragment>

@@ -26,11 +26,10 @@ export const ReactPaginateStyle = styled.div`
 export const FindBox = styled.div`
     .form {
         outline: 0;
-        margin-top: 0;
+        margin-top: 30px;
         display: flex;
         flex-direction: row-reverse;
         justify-content: center;
-        background: #fff;
         height: 65px;
     }
 
@@ -45,6 +44,7 @@ export const FindBox = styled.div`
         color: #212121;
         border: 0;
         border-radius: 4px 0 0 4px;
+        box-shadow: 0px 2px 3px #b5b5b5;
     }
 
     .form > .textbox:focus {
@@ -72,6 +72,7 @@ export const FindBox = styled.div`
         transition: background-color .4s ease;
         -webkit-border-radius: 0 4px 4px 0;
         border-radius: 0 4px 4px 0;
+        box-shadow: 0px 2px 3px #b5b5b5;
     }
 
     .form > .button:hover {

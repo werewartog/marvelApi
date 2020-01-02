@@ -26,6 +26,8 @@ export const getComics = (limit = 10, offset=0) => {
 
         } catch (error) {
             console.log(error)
+            dispatch(dispatchLoading(false));
+            disableScroll(false);
         }
     };
 }
@@ -42,6 +44,8 @@ export const getCharacter = (name = 'spider-man') => {
 
         } catch (error) {
             console.log(error)
+            dispatch(dispatchLoading(false));
+            disableScroll(false);
         }
     };
 }
@@ -58,76 +62,8 @@ export const getComicById = (id = 1009351, limit=10, offset = 0) => {
 
         } catch (error) {
             console.log(error)
+            dispatch(dispatchLoading(false));
+            disableScroll(false);
         }
     };
 }
-
-// export const getCategory = (id) => {
-//     return async dispatch => {
-//         dispatch(dispatchLoading(true))
-
-//         try {
-//             const data = await axios.get(`${API}/categories/${id}`);
-
-//             dispatch(dispatchLoading(false));
-//             dispatch({type:ActionTypes.GET_CATEGORY, payload: data});
-
-//         } catch (error) {
-//             console.error(error);
-
-//             dispatch(dispatchLoading(false))
-//             dispatch(dispatchError(error))
-//         }
-//     };
-// }
-
-// export const search = (value) => {
-//     return async dispatch => {
-//         try {
-//             const data = await axios.get(`${API}/search/products?q=${value}`);
-
-//             dispatch({type:ActionTypes.SEARCH_COMICS, payload: data});
-
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     };
-// }
-
-// export const getProduct = (id) => {
-//     return async dispatch => {
-//         dispatch(dispatchLoading(true))
-
-//         try {
-//             const data = await axios.get(`${API}/products/${id}`);
-
-//             dispatch(dispatchLoading(false));
-//             dispatch({type:ActionTypes.GET_PRODUCT, payload: data});
-
-//         } catch (error) {
-//             console.error(error);
-
-//             dispatch(dispatchLoading(false))
-//             dispatch(dispatchError(error))
-//         }
-//     };
-// }
-
-// export const paginateProducts = (page = 1, limit = 5) => {
-//     return async dispatch => {
-//         dispatch(dispatchLoading(true))
-
-//         try {
-//             const data = await axios.get(`${API}/products?page=${page}&limit=${limit}`);
-
-//             dispatch(dispatchLoading(false));
-//             dispatch({type:ActionTypes.PAGINATE_PRODUCTS, payload: data});
-
-//         } catch (error) {
-//             console.error(error);
-
-//             dispatch(dispatchLoading(false))
-//             dispatch(dispatchError(error))
-//         }
-//     };
-// }
