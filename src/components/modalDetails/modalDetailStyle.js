@@ -36,9 +36,8 @@ export const ModalDetailBackGround = styled.div`
     border-radius: 25px;
     background-color: #fff;
     width: 63vw;
-    height: 68vh;
-    padding: 3px 30px;
-    text-align: end;
+    height: auto;
+    padding: 3px 30px 30px;
 }
 
 .closeIcon{
@@ -57,15 +56,12 @@ export const ModalDetailBackGround = styled.div`
 }
 
 .positionText {
-
+    margin-top: 50px;
     display: flex;
     align-items: baseline;
     flex-direction: column;
     justify-content: center;
     text-align: left;
-}
-.boxSize {
-    width: 650px;
 }
 .title {
     font-size: 1.6em;

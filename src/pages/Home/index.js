@@ -6,6 +6,7 @@ import { disableScroll } from '../../utils/disableScroll'
 import ModalDetails from '../../components/modalDetails/ModalDetails'
 import ReactPaginate from 'react-paginate';
 import { MdSearch } from 'react-icons/md';
+import { Container, Col, Row } from 'react-bootstrap';
 
 class Home extends Component {
     state = {
@@ -18,7 +19,7 @@ class Home extends Component {
             description: '',
             creators: []
         },
-        characterName:'',
+        characterName: '',
         page: 1
     }
 
@@ -96,7 +97,7 @@ class Home extends Component {
         }, () => disableScroll(this.state.openModal))
     }
 
-    handleChangeName = (value) =>{
+    handleChangeName = (value) => {
         this.setState({
             ...this.state,
             characterName: value
@@ -107,43 +108,56 @@ class Home extends Component {
         return (
             <Fragment>
                 <FindBox>
-                    <div className="form">
-                        <span
-                            type="submit"
-                            className="button"
-                            onClick={() => this.searchByCharacter(this.state.characterName)}
-                        >
-                            <div className="fontIcon">
-                                <MdSearch />
-                            </div>
-                        </span>
-                        <input
-                            type="text"
-                            className="textbox"
-                            onChange={(e) => this.handleChangeName(e.target.value)}
-                            value={this.state.characterName}
-                            onSubmit={(e) => {
-                                this.searchByCharacter(e.target.value);
-                                e.preventDefault();
-                            }}
-                            placeholder="Find comic by hero name"
-                        />
-                    </div>
+                    <Container>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={12} md={12} lg={9} >
+                                <div className="form">
+                                    <span
+                                        type="submit"
+                                        className="button"
+                                        onClick={() => this.searchByCharacter(this.state.characterName)}
+                                    >
+                                        <div className="fontIcon">
+                                            <MdSearch />
+                                        </div>
+                                    </span>
+                                    <input
+                                        type="text"
+                                        className="textbox"
+                                        onChange={(e) => this.handleChangeName(e.target.value)}
+                                        value={this.state.characterName}
+                                        onSubmit={(e) => {
+                                            this.searchByCharacter(e.target.value);
+                                            e.preventDefault();
+                                        }}
+                                        placeholder="Find comic by hero name"
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                 </FindBox>
                 <ContentBox>
                     <ModalDetails showModalBox={this.state.openModal} closeModalBox={this.handleCloseModal} option={this.state.comicSelected} />
                     <ProductList>
-                        {
-                            results.map((comicUnique) => (
-                                <li key={comicUnique.id} className="li">
-                                    <img src={comicUnique.thumbnail.path.concat(".").concat("jpg")} alt={comicUnique.title} />
-                                    <strong>{comicUnique.title}</strong>
-                                    <button type='button' className="button" onClick={() => this.handleOpenModal(comicUnique.id)}>
-                                        <span>Ver detalhes</span>
-                                    </button>
-                                </li>
-                            ))
-                        }
+                        <Container>
+                            <Row>
+                                {
+                                    results.map((comicUnique) => (
+                                        <Col xs={12} sm={6} md={6} lg={4} className="separateRow">
+                                            <div key={comicUnique.id} className="li">
+                                                <img src={comicUnique.thumbnail.path.concat(".").concat("jpg")} alt={comicUnique.title} />
+                                                <strong>{comicUnique.title}</strong>
+                                                <button type='button' className="button" onClick={() => this.handleOpenModal(comicUnique.id)}>
+                                                    <span>Ver detalhes</span>
+                                                </button>
+                                            </div>
+                                        </Col>
+
+                                    ))
+                                }
+                            </Row>
+                        </Container>
                     </ProductList>
                     <ReactPaginateStyle>
                         <ReactPaginate

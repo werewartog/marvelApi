@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ReactPaginateStyle = styled.div`
     ul {
         padding: 0 15vw 0 15vw;
-        color: #fff;
+        color: #000;
         display: flex;
         justify-content: space-around;
         list-style: none;
@@ -37,7 +37,7 @@ export const FindBox = styled.div`
         font-size: 20px;
         outline: 0;
         height: 50px;
-        width: 34vw;
+        width: 90%;
         line-height: 42px;
         padding: 0 16px;
         background-color: #e8dcdccc;
@@ -89,15 +89,14 @@ export const ContentBox = styled.div`
 `;
 export const ProductList = styled.div`
     margin: 35px
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 40px;
-    list-style: none;
 
     img{
         align-self: center;
         height: 390px;
         width: 100%;
+    }
+    .separateRow {
+        margin-bottom: 20px;
     }
 
     .li {
@@ -107,12 +106,13 @@ export const ProductList = styled.div`
         border-radius: 4px;
         padding: 20px;
         overfloe: auto;
+        box-shadow: -1px 2px 7px #000;
     }
 
     .li > strong{
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 300px;
+        width: 90%;
         overflow: hidden;
         text-overflow:    ellipsis;
         font-size: 16px;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DisableBackground from './DisableBackground'
 import { MdClose } from 'react-icons/md';
+import { Image, Col, Row } from 'react-bootstrap';
+
 
 
 class ModalDetails extends Component {
@@ -17,15 +19,16 @@ class ModalDetails extends Component {
                 closeModalBox={closeModalBox}
                 title={title}
             >
+
                 <div className="positionItens" onClick={option.handleOpen}>
-                <div className="closeIcon">
-                <MdClose onClick ={closeModalBox}/>
-                </div>
-                    <div className="flexRow">
-                        <div>
-                            <img className={"image"} src={option.img} />
-                        </div>
-                        <div className="boxSize">
+                    <div className="closeIcon">
+                        <MdClose onClick={closeModalBox} />
+                    </div>
+                    <Row className="justify-content-between">
+                        <Col md={5}>
+                            <Image src={option.img} fluid />
+                        </Col>
+                        <Col md={7}>
                             <div className={"positionText"}>
                                 <span className="title">Title: <span className="subTitle">{option.title}</span></span>
                                 <span className="title">Description: <span className="subTitle">{option.description}</span></span>
@@ -43,10 +46,9 @@ class ModalDetails extends Component {
                                     }
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </Col>
+                    </Row>
                 </div>
-
             </DisableBackground>
         )
     }

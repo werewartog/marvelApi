@@ -25,5 +25,20 @@ export const Container = styled.div`
         font-size: 5.5em;
         font-weight: bold;
     }
+
+    @media (max-width: 500px) {
+        .logo {
+            height: 54px;
+          }
+          .logoElement {
+              text-shadow: -1px 0 black, 0 3px black, -4px 0 black, 0 -1px black;
+              margin-left: -12px;
+              color: yellow;
+              font-family: 'Raleway', sans-serif;
+              letter-spacing: -1px;
+              font-size: 3.5em;
+              font-weight: bold;
+          }
+    }
 `;
 
