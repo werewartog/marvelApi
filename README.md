@@ -2,7 +2,7 @@ Catálogo de quadrinhos.
 
 Detalhes:
  - React/Redux.
- - Não responsivo (Estou trabalhando nisso).
+ - Bootstrap 4.
  - Styled-components
  - Eslint
  - Prettier
